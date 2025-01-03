@@ -1,0 +1,429 @@
+local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
+local Notify = AkaliNotif.Notify
+
+local function showNotification(description, title, duration)
+    Notify({
+        Description = description,
+        Title = title,
+        Duration = duration
+    })
+end
+
+
+
+    local Players = game:GetService("Players")
+    local player = Players.LocalPlayer
+    
+
+
+
+local Z7A_Players = game:GetService("Players")
+local Q5X_RunService = game:GetService("RunService")
+
+-- Get the LocalPlayer
+local X3P_localPlayer = Z7A_Players.LocalPlayer
+
+-- Ensure the player's model is under workspace.Criminals
+local W9Y_criminalsFolder = workspace:FindFirstChild("Criminals")
+if not W9Y_criminalsFolder then
+    warn("Criminals folder not found in the workspace.")
+    return
+end
+
+local B8K_playerModel = W9Y_criminalsFolder:FindFirstChild(X3P_localPlayer.Name)
+if not B8K_playerModel then
+    warn("LocalPlayer's model not found under workspace.Criminals.")
+    return
+end
+
+-- Ensure the model has a Crouching BoolValue
+local T4J_crouchingValue = B8K_playerModel:FindFirstChild("Crouching")
+if not T4J_crouchingValue or not T4J_crouchingValue:IsA("BoolValue") then
+    warn("Crouching BoolValue not found in the player's model.")
+    return
+end
+
+-- Update Crouching.Value to true on RenderStepped
+Q5X_RunService.RenderStepped:Connect(function()
+    T4J_crouchingValue.Value = true
+end)
+
+
+
+
+
+
+
+
+    local Players = game:GetService("Players")
+    local player = Players.LocalPlayer
+    
+    function createLoadingBar(duration)
+        -- Create a ScreenGui
+        local screenGui = Instance.new("ScreenGui", player.PlayerGui)
+        screenGui.Name = "LoadingBarGui"
+        
+        -- Create the frame for the loading bar
+        local loadingBarFrame = Instance.new("Frame", screenGui)
+        loadingBarFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+        loadingBarFrame.Position = UDim2.new(0.5, 0, 0.55, 0)
+        loadingBarFrame.Size = UDim2.new(0, 300, 0, 10)
+        loadingBarFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+        loadingBarFrame.BorderSizePixel = 0
+    
+        -- Create the fill bar
+        local fillBar = Instance.new("Frame", loadingBarFrame)
+        fillBar.Size = UDim2.new(0, 0, 1, 0)
+        fillBar.BackgroundColor3 = Color3.new(1, 0, 1)
+        fillBar.BorderSizePixel = 0
+    
+        -- Increment the loading bar's size over time
+        local startTime = tick()
+        while tick() - startTime < duration do
+            local elapsedTime = tick() - startTime
+            fillBar.Size = UDim2.new(elapsedTime / duration, 0, 1, 0)
+            wait(0.03) -- Update 30 times per second for smooth animation
+        end
+    
+        -- Ensure the bar is fully filled after the duration
+        fillBar.Size = UDim2.new(1, 0, 1, 0)
+        wait(0.1)
+        screenGui:Destroy()
+    end
+    
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Yield1111/Sync.wtf/refs/heads/main/Fov%20changer"))()
+    
+
+    -- Notification Setup
+   
+    -- Notify function to display messages
+
+    
+    
+        
+        
+        -- Service References
+        -- Service References
+        local Players = game:GetService("Players")  
+        local RunService = game:GetService("RunService")
+        
+        -- LocalPlayer and Character Reference
+        local Player = Players.LocalPlayer
+        local Character = Player.Character or Player.CharacterAdded:Wait()
+        
+        -- Function to set CanCollide to false for all character parts
+        local function setNoclip(state)
+            for _, part in ipairs(Character:GetDescendants()) do
+                if part:IsA("BasePart") and part.CanCollide ~= not state then
+                    part.CanCollide = not state
+                end
+            end
+        end
+        
+        -- Update function for noclip during each frame
+        local function onStepped()
+            setNoclip(true)  -- Continuously enable noclip
+        end
+        
+        -- Connect the noclip behavior to RenderStepped
+        RunService.RenderStepped:Connect(onStepped)
+        
+        -- Initial message
+        
+            
+
+    
+    
+
+    -- Service References
+    local TweenService = game:GetService("TweenService")
+    local Workspace = game:GetService("Workspace")
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    local Players = game:GetService("Players")
+    local RunService = game:GetService("RunService")
+    
+    -- LocalPlayer and Character Reference
+    local Player = Players.LocalPlayer
+    local Character = Player.Character or Player.CharacterAdded:Wait()
+    local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+    
+    -- Tween Information (keep default duration for X and Z, set to 0 for Y axis)
+    local tweenInfo = TweenInfo.new(10, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)  -- Default duration for X and Z
+    local instantTweenInfo = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)  -- Instant teleport for Y
+    
+    -- Function to create a tween for moving the player
+    local function createTween(destination, duration)
+        local goal = {Position = destination}
+        local tween = TweenService:Create(HumanoidRootPart, duration, goal)
+        return tween
+    end
+    
+    -- Function to teleport the player underground instantly
+    local function teleportUnderground()
+        local currentPosition = HumanoidRootPart.Position
+        local undergroundPosition = Vector3.new(currentPosition.X, currentPosition.Y - 0, currentPosition.Z)
+        
+        -- Create and play the tween to move the player underground instantly
+        local undergroundTween = createTween(undergroundPosition, instantTweenInfo)
+        undergroundTween:Play()
+        undergroundTween.Completed:Wait()
+    end
+    
+    -- Function to find the first model in workspace.BigLoot
+    local function findFirstModelInBigLoot()
+        for _, item in ipairs(Workspace.BigLoot:GetChildren()) do
+            if item:IsA("Model") then
+                return item
+            end
+        end
+        return nil
+    end
+    
+    -- Function to teleport to the X and Z axis of the found model, 5 studs below the target with the default duration
+    local function teleportToXZ(targetModel)
+        if targetModel then
+            local targetPosition = Vector3.new(targetModel.PrimaryPart.Position.X, HumanoidRootPart.Position.Y - 0, targetModel.PrimaryPart.Position.Z)
+            
+            -- Create and play the tween to move the player to the X and Z axes
+            local xzTween = createTween(targetPosition, tweenInfo)
+            xzTween:Play()
+            xzTween.Completed:Wait()
+        end
+    end
+    
+    -- Function to teleport to the Y axis of the found model, 5 studs below the target instantly
+    local function teleportToY(targetModel)
+        if targetModel then
+            local targetPosition = Vector3.new(HumanoidRootPart.Position.X, targetModel.PrimaryPart.Position.Y - 0, HumanoidRootPart.Position.Z)
+            
+            -- Create and play the tween to move the player to the Y axis instantly
+            local yTween = createTween(targetPosition, instantTweenInfo)
+            yTween:Play()
+            yTween.Completed:Wait()
+        end
+    end
+    
+    -- Function to set velocity to 0 (stopping player movement)
+    local function resetVelocity()
+        if HumanoidRootPart then
+            HumanoidRootPart.Velocity = Vector3.zero
+            HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero -- Resetting velocity for newer game mechanics
+        end
+    end
+    
+    -- Continuously reset velocity each frame (this will prevent the player from moving)
+    RunService.RenderStepped:Connect(function()
+        resetVelocity()
+    end)
+    
+    -- Function to start the interaction
+    local function startInteraction(Path)
+        ReplicatedStorage.RS_Package.Remotes.StartInteraction:FireServer(Path)
+    end
+    
+    -- Function to complete the interaction
+    local function completeInteraction(Path)
+        createLoadingBar(5) -- Wait for 5 seconds before completing the interaction
+        ReplicatedStorage.RS_Package.Remotes.CompleteInteraction:FireServer(Path)
+    end
+    
+    -- Function to find the ProximityPrompt anywhere in the model's descendants
+    local function findProximityPrompt(targetModel)
+        for _, descendant in ipairs(targetModel:GetDescendants()) do
+            if descendant:IsA("ProximityPrompt") then
+                return descendant
+            end
+        end
+        return nil
+    end
+    
+    -- Main Script Logic
+    local function teleportPlayer()
+        -- First teleport the player underground instantly
+        teleportUnderground()
+        
+        -- Wait for the underground teleport to finish (instant)
+        
+        -- Find the first model in workspace.BigLoot
+        local targetModel = findFirstModelInBigLoot()
+        
+        if targetModel then
+            -- Teleport to the X and Z axes of the first model, 5 studs below with default duration
+            teleportToXZ(targetModel)
+            
+            -- Teleport to the Y axis of the first model, 5 studs below instantly
+            teleportToY(targetModel)
+            
+
+-- Random variable names
+local xhPzL = game.Players.LocalPlayer
+local criminalModel = workspace.Criminals:WaitForChild(xhPzL.Name) -- Get the local player's model from workspace.Criminals
+
+-- Wait for the model to fully load (including all body parts)
+local qdYtF = criminalModel:WaitForChild("Head")
+
+-- Function to anchor the left leg with random long names
+local function apTlK()
+    if qdYtF and qdYtF:IsA("BasePart") then
+        qdYtF.Anchored = true
+    end
+end
+
+-- Function to unanchor the left leg with random long names
+local function lbVjK()
+    if qdYtF and qdYtF:IsA("BasePart") then
+        qdYtF.Anchored = false
+    end
+end
+wait(0.2)
+-- Call the function to anchor the left leg
+apTlK()
+
+
+
+
+
+
+            local ProximityPrompt = findProximityPrompt(targetModel)
+            
+            if ProximityPrompt then
+            wait(0.5)
+                -- We can use ProximityPrompt as a valid Path for interaction
+                startInteraction(ProximityPrompt)
+                
+                -- Complete the interaction after waiting for 5 seconds
+                completeInteraction(ProximityPrompt)
+                wait(0.1)
+                lbVjK()
+                wait(0.1)
+
+            else
+                warn("No ProximityPrompt found in the target model.")
+            end
+        else
+            warn("No models found in workspace.BigLoot.")
+        end
+    end
+    
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    wait(0.1)
+
+local cameraModel = workspace.Camera:WaitForChild("CameraModel"):WaitForChild("Model")
+
+for _, object in pairs(cameraModel:GetDescendants()) do
+    -- Check if the object is a part
+    if object:IsA("BasePart") then
+        -- Change material to ForceField
+        object.Material = Enum.Material.ForceField
+        -- Change color to purple
+        object.Color = Color3.fromRGB(128, 0, 128)  -- RGB for purple
+    end
+end
+
+    
+    
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Yield1111/Sync.wtf/refs/heads/main/Fov%20changer"))()
+    
+    
+    
+    
+    
+    
+    
+        
+    -- Function to repeatedly execute until no models are left in workspace.BigLoot
+    -- Function to teleport to the full position (X, Y, Z)
+    local function teleportToFullPosition(position)
+        -- First teleport to X and Z with default duration
+        local targetPositionXZ = Vector3.new(position.X, HumanoidRootPart.Position.Y, position.Z)
+        teleportToXZ({PrimaryPart = {Position = targetPositionXZ}})  -- Teleport to X and Z
+    
+        -- Then, teleport to the full Y position instantly
+        local targetPositionY = Vector3.new(position.X, position.Y, position.Z)
+        teleportToY({PrimaryPart = {Position = targetPositionY}})  -- Teleport to Y (instantly)
+    end
+    
+    -- Function to repeatedly execute until no models are left in workspace.BigLoot
+    function EverythingTogether()
+        -- Loop while there are models in BigLoot
+        while true do
+            -- Find the first model in workspace.BigLoot
+            local targetModel = findFirstModelInBigLoot()
+    
+            -- Check if a model was found
+            if targetModel then
+                -- Show notification with the target model's name
+                showNotification("", "Teleporting to " .. targetModel.Name, 5)
+    
+                -- Teleport the player
+                teleportPlayer()
+    
+                -- Perform the ThrowBag operation
+                local throwPosition = Vector3.new(0, 0, 0)
+                game:GetService("ReplicatedStorage").RS_Package.Remotes.ThrowBag:FireServer(throwPosition)
+                wait(0.3)
+            
+                -- Teleport the MoneyBag to a target position
+                local targetPositionBag = Vector3.new(-63.3399887, 2.23085117, -130.891998)
+                local Bag = workspace.Bags.Bag.MoneyBag
+            
+                if Bag then
+                    -- Set the CFrame of the MoneyBag to the target position
+                    Bag.CFrame = CFrame.new(targetPositionBag)
+                    print("MoneyBag teleported successfully!")
+                else
+                    game:GetService("ReplicatedStorage").RS_Package.Remotes.ForceReset:FireServer()
+                end
+            else
+                -- No models left in BigLoot, teleport to the fallback position
+                print("No models left in BigLoot, teleporting to fallback position.")
+                
+                -- Teleport to the full position (X, Y, Z)
+                local fallbackPosition = Vector3.new(-63.3399887, 2.23085117, -130.891998)
+                teleportToFullPosition(fallbackPosition)
+wait(3)
+
+-- Get the relevant service and object
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local replicatedGameStatus = replicatedStorage:WaitForChild("RS_Package"):WaitForChild("ReplicatedGameStatus")
+local wonValue = replicatedGameStatus:WaitForChild("Won")
+
+-- Function to check if the game is won and print the appropriate message
+local function checkGameStatus()
+    if wonValue.Value == true then
+        game:GetService("ReplicatedStorage").RS_Package.Remotes.ForceReset:FireServer()
+    else
+        showNotification("Waiting for other Players..", "", 5)
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Come to the van for free candy! 🤑", "All")
+
+     end
+end
+
+-- Loop to constantly check the Won value
+while true do
+    checkGameStatus()
+    wait(3)  -- Wait for 1 second before checking again
+end
+
+    
+                break  -- Exit the loop after teleporting to the fallback position
+            end
+            
+            wait(.1)  -- Small delay to prevent too rapid firing of the loop
+        end
+    end
+    
+    -- Execute the EverythingTogether function
+    EverythingTogether()
+    
