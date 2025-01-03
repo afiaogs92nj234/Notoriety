@@ -12,6 +12,14 @@ local function showNotification(description, title, duration)
     })
 end
 
+showNotification("AutoFarm loaded", "Made by 4stud", 5)
+
+wait(0.1)
+
+local ohString1 = "Class 2"
+local ohBoolean2 = true
+
+game:GetService("ReplicatedStorage").RS_Package.Remotes.PlayerReady:FireServer(ohString1, ohBoolean2)
 
 
 local NightclubPosition = Vector3.new(-8.06596375, 3.85441327, -201.954788)
