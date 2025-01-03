@@ -1,1 +1,397 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Yield1111/Sync.wtf/refs/heads/main/Fov%20changer"))()
+-- Notification Setup
+local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
+local Notify = AkaliNotif.Notify
+
+-- Notify function to display messages
+local function showNotification(description, title, duration)
+    Notify({
+        Description = description,
+        Title = title,
+        Duration = duration
+    })
+end
+-- Loop to check for the player in workspace.Criminals
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local function checkCriminalPresence()
+    return workspace.Criminals:FindFirstChild(player.Name) ~= nil
+end
+-- Loop to check for the player in workspace.Criminals
+
+-- Function to check if the player is in the workspace.Criminals
+
+
+
+
+-- Function to check if the player is in the workspace.Criminals
+local function checkCriminalPresence()
+    return workspace.Criminals:FindFirstChild(player.Name) ~= nil
+end
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Yield1111/Sync.wtf/refs/heads/main/Fov%20changer"))()
+
+
+
+
+-- Function to create and update a loading bar
+
+-- Sending messages to chat
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Starting auto completion..", "All")
+
+
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Yield1111/Sync.wtf/refs/heads/main/Fov%20changer"))()
+
+
+game:GetService("ReplicatedStorage").RS_Package.Assets.Remotes.MaskOn:FireServer()
+wait(0.1)
+local cameraModel = workspace.Camera:WaitForChild("CameraModel"):WaitForChild("Model")
+
+for _, object in pairs(cameraModel:GetDescendants()) do
+    -- Check if the object is a part
+    if object:IsA("BasePart") then
+        -- Change material to ForceField
+        object.Material = Enum.Material.ForceField
+        -- Change color to purple
+        object.Color = Color3.fromRGB(128, 0, 128)  -- RGB for purple
+    end
+end
+-- 
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Yield1111/Sync.wtf/refs/heads/main/Fov%20changer"))()
+
+local function createLoadingBar(duration)
+    -- Create a ScreenGui
+    local screenGui = Instance.new("ScreenGui", player.PlayerGui)
+    screenGui.Name = "LoadingBarGui"
+    
+    -- Create the frame for the loading bar
+    local loadingBarFrame = Instance.new("Frame", screenGui)
+    loadingBarFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+    loadingBarFrame.Position = UDim2.new(0.5, 0, 0.55, 0)
+    loadingBarFrame.Size = UDim2.new(0, 300, 0, 10)
+    loadingBarFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+    loadingBarFrame.BorderSizePixel = 0
+
+    -- Create the fill bar
+    local fillBar = Instance.new("Frame", loadingBarFrame)
+    fillBar.Size = UDim2.new(0, 0, 1, 0)
+    fillBar.BackgroundColor3 = Color3.new(1, 0, 1)
+    fillBar.BorderSizePixel = 0
+
+    -- Increment the loading bar's size over time
+    local startTime = tick()
+    while tick() - startTime < duration do
+        local elapsedTime = tick() - startTime
+        fillBar.Size = UDim2.new(elapsedTime / duration, 0, 1, 0)
+        wait(0.03) -- Update 30 times per second for smooth animation
+    end
+
+    -- Ensure the bar is fully filled after the duration
+    fillBar.Size = UDim2.new(1, 0, 1, 0)
+    wait(0.1)
+    screenGui:Destroy()
+end
+
+-- Initial Notification
+showNotification("NightClub", "Starting auto completion...", 5)
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Yield1111/Sync.wtf/refs/heads/main/Fov%20changer"))()
+
+
+
+-- Function to find the player's criminal model in workspace
+local function findCriminalModel()
+    -- Check if the "Criminals" folder exists
+    local criminalsFolder = workspace:FindFirstChild("Criminals")
+    if not criminalsFolder then
+        warn("Criminals folder not found in workspace!")
+        return nil
+    end
+
+    -- Wait for the player's criminal model to appear in the "Criminals" folder
+    local criminalModel = criminalsFolder:WaitForChild(player.Name, 10)  -- 10 seconds timeout
+    if not criminalModel then
+        warn("Criminal model not found for player:", player.Name)
+    else
+        print("Criminal model found:", criminalModel.Name)
+    end
+    return criminalModel
+end
+
+-- Example usage
+local character = findCriminalModel()
+if character then
+    -- Proceed with your logic here, for example, finding the HumanoidRootPart
+    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+    if humanoidRootPart then
+        print("HumanoidRootPart found:", humanoidRootPart.Name)
+    else
+        warn("HumanoidRootPart not found in the criminal model!")
+    end
+end
+
+
+-- Function to set PlatformStand to true
+function SitFunction()
+    local criminalModel = findCriminalModel()
+    if criminalModel then
+        local humanoid = criminalModel:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.Sit = true
+            print("PlatformStand set to true")
+        else
+            warn("Humanoid not found in the criminal model!")
+        end
+    else
+        warn("Player model not found in workspace.Criminals!")
+    end
+end
+
+-- Call the SitFunction
+SitFunction()
+
+
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local player = Players.LocalPlayer
+
+-- Wait for the criminal character
+local function getCriminalCharacter()
+    local character = workspace.Criminals:FindFirstChild(player.Name)
+    if not character then
+        warn("Criminal character not found in workspace.Criminals!")
+    else
+        print("Criminal character found:", character.Name)
+    end
+    return character
+end
+
+-- Find the HumanoidRootPart with debug outputs
+local function getHumanoidRootPart(character)
+    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+    if humanoidRootPart then
+        print("HumanoidRootPart found:", humanoidRootPart.Name)
+    else
+        warn("HumanoidRootPart not found in character!")
+    end
+    return humanoidRootPart
+end
+
+-- Smooth teleportation with tween
+local function teleportSmoothly(humanoidRootPart, targetPosition)
+    local goal = {}
+    goal.CFrame = CFrame.new(targetPosition)
+    
+    local tweenInfo = TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+    local tween = TweenService:Create(humanoidRootPart, tweenInfo, goal)
+    tween:Play()
+    tween.Completed:Wait()
+    print("Smoothly teleported to:", targetPosition)
+end
+
+-- Main retrieval logic
+local character = getCriminalCharacter()
+if character then
+    local humanoidRootPart = getHumanoidRootPart(character)
+    if humanoidRootPart then
+        -- Example teleportation logic using smooth tween
+        local targetPosition = Vector3.new(64.5197144, 13.9999962, -93.8511887)
+        teleportSmoothly(humanoidRootPart, targetPosition)
+    end
+end
+
+wait(0.2)  
+
+-- Start interactions with loading bars
+game:GetService("ReplicatedStorage").RS_Package.Remotes.StartInteraction:FireServer(workspace.Map:GetChildren()[3].MiniSafe.InsertDrill.ProximityPromptPickLock)
+createLoadingBar(7.5)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.CompleteInteraction:FireServer(workspace.Map:GetChildren()[3].MiniSafe.InsertDrill.ProximityPromptPickLock)
+wait(.3)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.StartInteraction:FireServer(workspace.Map:GetChildren()[3].Coke.Cola.ProximityPrompt)
+createLoadingBar(5)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.CompleteInteraction:FireServer(workspace.Map:GetChildren()[3].Coke.Cola.ProximityPrompt)
+wait(0.1)
+-- Throw bag remote call
+local throwPosition = Vector3.new(0.21202145516872406, 0.03154035657644272, -0.9767559170722961)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.ThrowBag:FireServer(throwPosition)
+
+wait(.2)
+
+-- Define the part and the target position
+local moneyBag = workspace.Bags.Bag.MoneyBag
+local targetPosition = Vector3.new(-19.1936417, 5.40206289, -198.450699)
+
+if moneyBag then
+    -- Set the CFrame of the MoneyBag to the target position
+    moneyBag.CFrame = CFrame.new(targetPosition)
+    print("MoneyBag teleported successfully!")
+else
+    warn("MoneyBag not found in workspace.Bags.Bag!")
+end
+
+showNotification("1/5 Bags", "Secured a bag!", 5)
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Secured a bag! (1/5 Bags)", "All")
+
+-- Second teleportation example
+local secondTargetPosition = Vector3.new(-23.5667286, -8.14823914, -104.854385)
+local secondHumanoidRootPart = getHumanoidRootPart(character)
+if secondHumanoidRootPart then
+    teleportSmoothly(secondHumanoidRootPart, secondTargetPosition)
+end
+
+wait(.3)
+
+game:GetService("ReplicatedStorage").RS_Package.Remotes.StartInteraction:FireServer(workspace.BigLoot.GoldBars.Bar.ProximityPrompt)
+createLoadingBar(5)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.CompleteInteraction:FireServer(workspace.BigLoot.GoldBars.Bar.ProximityPrompt)
+
+wait(.1)
+local throwPosition = Vector3.new(0.21202145516872406, 0.03154035657644272, -0.9767559170722961)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.ThrowBag:FireServer(throwPosition)
+wait(.5)
+
+
+local moneyBag = workspace.Bags.Bag.MoneyBag
+local targetPosition = Vector3.new(-19.1936417, 5.40206289, -198.450699)
+
+if moneyBag then
+    -- Set the CFrame of the MoneyBag to the target position
+    moneyBag.CFrame = CFrame.new(targetPosition)
+    print("MoneyBag teleported successfully!")
+else
+    warn("MoneyBag not found in workspace.Bags.Bag!")
+end
+
+showNotification("2/5 Bags", "Secured a bag!", 5)
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Secured a bag! (2/5 Bags)", "All")
+
+
+wait(.3)
+
+game:GetService("ReplicatedStorage").RS_Package.Remotes.StartInteraction:FireServer(workspace.BigLoot.GoldBars.Bar.ProximityPrompt)
+createLoadingBar(5)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.CompleteInteraction:FireServer(workspace.BigLoot.GoldBars.Bar.ProximityPrompt)
+wait(.1)
+local throwPosition = Vector3.new(0.21202145516872406, 0.03154035657644272, -0.9767559170722961)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.ThrowBag:FireServer(throwPosition)
+wait(.5)
+
+
+local moneyBag = workspace.Bags.Bag.MoneyBag
+local targetPosition = Vector3.new(-19.1936417, 5.40206289, -198.450699)
+
+if moneyBag then
+    -- Set the CFrame of the MoneyBag to the target position
+    moneyBag.CFrame = CFrame.new(targetPosition)
+    print("MoneyBag teleported successfully!")
+else
+    warn("MoneyBag not found in workspace.Bags.Bag!")
+end
+
+showNotification("3/5 Bags", "Secured a bag!", 5)
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Secured a bag! (3/5 Bags)", "All")
+
+
+
+
+
+
+wait(.3)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.StartInteraction:FireServer(workspace.BigLoot.GoldBars.Bar.ProximityPrompt)
+createLoadingBar(5)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.CompleteInteraction:FireServer(workspace.BigLoot.GoldBars.Bar.ProximityPrompt)
+wait(.1)
+local throwPosition = Vector3.new(0.21202145516872406, 0.03154035657644272, -0.9767559170722961)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.ThrowBag:FireServer(throwPosition)
+wait(.5)
+
+
+
+local moneyBag = workspace.Bags.Bag.MoneyBag
+local targetPosition = Vector3.new(-19.1936417, 5.40206289, -198.450699)
+
+if moneyBag then
+    -- Set the CFrame of the MoneyBag to the target position
+    moneyBag.CFrame = CFrame.new(targetPosition)
+    print("MoneyBag teleported successfully!")
+else
+    warn("MoneyBag not found in workspace.Bags.Bag!")
+end
+
+showNotification("4/5 Bags", "Secured a bag!", 5)
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Secured a bag! (4/5 Bags)", "All")
+wait(0.1)
+
+
+
+local ThirdTargetPosition = Vector3.new(-35.1155396, 13.9999981, -78.1156006)
+local secondHumanoidRootPart = getHumanoidRootPart(character)
+if secondHumanoidRootPart then
+    teleportSmoothly(secondHumanoidRootPart, ThirdTargetPosition)
+end
+
+
+
+wait(.5)
+
+
+local Safe2 = workspace.Map.Safe.MiniSafe.InsertDrill.ProximityPromptPickLock
+
+game:GetService("ReplicatedStorage").RS_Package.Remotes.StartInteraction:FireServer(Safe2)
+createLoadingBar(7.5)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.CompleteInteraction:FireServer(Safe2)   
+wait(.3)
+local Cola2 = workspace.Map.Safe.Coke.Cola.ProximityPrompt
+game:GetService("ReplicatedStorage").RS_Package.Remotes.StartInteraction:FireServer(Cola2)
+createLoadingBar(5)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.CompleteInteraction:FireServer(Cola2)
+wait(0.1)
+
+
+local secondTargetPosition = Vector3.new(-19.1936417, 5.40206289, -198.450699)
+local secondHumanoidRootPart = getHumanoidRootPart(character)
+if secondHumanoidRootPart then
+    teleportSmoothly(secondHumanoidRootPart, secondTargetPosition)
+end
+wait(.2)
+
+local throwPosition = Vector3.new(0.21202145516872406, 0.03154035657644272, -0.9767559170722961)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.ThrowBag:FireServer(throwPosition)
+wait(2)
+
+showNotification("5/5 Bags", "Secured a bag!", 5)
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Secured a bag! (5/5 Bags)", "All")
+wait(0.5)
+
+showNotification("Completed!", "", 5)
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Completed!", "All")
+
+wait(3)
+
+
+-- Get the relevant service and object
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local replicatedGameStatus = replicatedStorage:WaitForChild("RS_Package"):WaitForChild("ReplicatedGameStatus")
+local wonValue = replicatedGameStatus:WaitForChild("Won")
+
+-- Function to check if the game is won and print the appropriate message
+local function checkGameStatus()
+    if wonValue.Value == true then
+        game:GetService("ReplicatedStorage").RS_Package.Remotes.ForceReset:FireServer()
+    else
+        showNotification("Waiting for other Players..", "", 5)
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Come to the van for free candy! 🤑", "All")
+
+     end
+end
+
+-- Loop to constantly check the Won value
+while true do
+    checkGameStatus()
+    wait(3.4)  -- Wait for 1 second before checking again
+end
 
