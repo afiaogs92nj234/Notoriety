@@ -31,7 +31,7 @@ local engineBlock = workspace:FindFirstChild("BagSecuredArea")
 
 if engineBlock then
     if engineBlock.Position == NightclubPosition then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Nightclub%20loading%20string"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Nightclub%20real%20loadingstring"))()
     elseif engineBlock.Position == ShadowRaidPosition then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Shadow%20raid"))()
     end
