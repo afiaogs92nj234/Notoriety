@@ -1,0 +1,19 @@
+
+coroutine.wrap(function()
+    while true do
+        local ohTable1 = {}
+
+        -- Add every model in workspace.Citizens to ohTable1 (without any checks)
+        for _, child in pairs(workspace.Citizens:GetChildren()) do
+            if child:IsA("Model") then
+                table.insert(ohTable1, child)
+            end
+        end
+
+        -- Fire the server event with the dynamically created table
+        game:GetService("ReplicatedStorage").RS_Package.Remotes.PlayerYell:FireServer(ohTable1)
+
+        -- Wait for a short duration to avoid spamming too fast
+        task.wait(0.3)
+    end
+end)()
