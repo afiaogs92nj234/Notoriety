@@ -1,0 +1,67 @@
+        local RunService = game:GetService("RunService")
+            local Players = game:GetService("Players")
+
+
+         local Player = Players.LocalPlayer
+    local Character = Player.Character or Player.CharacterAdded:Wait()
+    local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+    
+
+
+
+        local function resetVelocity()
+        if HumanoidRootPart then
+            HumanoidRootPart.Velocity = Vector3.zero
+            HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero -- Resetting velocity for newer game mechanics
+        end
+    end
+    
+    -- Continuously reset velocity each frame (this will prevent the player from moving)d
+    RunService.RenderStepped:Connect(function()
+        resetVelocity()
+    end)
+
+
+local Z7A_Players = game:GetService("Players")
+local Q5X_RunService = game:GetService("RunService")
+
+-- Get the LocalPlayer
+local X3P_localPlayer = Z7A_Players.LocalPlayer
+
+-- Ensure the player's model is under workspace.Criminals
+local W9Y_criminalsFolder = workspace:FindFirstChild("Criminals")
+if not W9Y_criminalsFolder then
+    warn("Criminals folder not found in the workspace.")
+    return
+end
+
+local B8K_playerModel = W9Y_criminalsFolder:FindFirstChild(X3P_localPlayer.Name)
+if not B8K_playerModel then
+    warn("LocalPlayer's model not found under workspace.Criminals.")
+    return
+end
+
+-- Ensure the model has a Crouching BoolValue
+local T4J_crouchingValue = B8K_playerModel:FindFirstChild("Crouching")
+if not T4J_crouchingValue or not T4J_crouchingValue:IsA("BoolValue") then
+    warn("Crouching BoolValue not found in the player's model.")
+    return
+end
+
+-- Update Crouching.Value to true on RenderStepped
+Q5X_RunService.RenderStepped:Connect(function()
+    T4J_crouchingValue.Value = true
+end)
+
+
+local a1b2c3d4 = game:GetService("Players")
+local x9y8z7w6 = a1b2c3d4.LocalPlayer
+
+if x9y8z7w6.Character and x9y8z7w6.Character:FindFirstChild("Humanoid") then
+    local h1u2m3a4 = x9y8z7w6.Character.Humanoid
+    h1u2m3a4.Sit = true
+else
+    warn("Humanoid not found or character not loaded.")
+end
+
+
