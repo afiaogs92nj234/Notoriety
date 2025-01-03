@@ -1,1 +1,26 @@
+coroutine.wrap(function()
+    local a1b2 = game:GetService("RunService")
+    local c3d4 = game:GetService("ReplicatedStorage")
+    local e5f6 = game:GetService("Workspace")
+    local g7h8 = game:GetService("Players")
 
+    local i9j0 = a1b2.RenderStepped
+    local m3n4 = c3d4:FindFirstChild("RS_Package"):WaitForChild("Assets"):WaitForChild("Remotes"):WaitForChild("Damage")
+    local o5p6 = g7h8.LocalPlayer
+
+    local q7r8 = {
+        s9t0 = true,
+        u1v2 = 'Head'
+    }
+
+    if q7r8.s9t0 then
+        local w3x4 = o5p6.Character:FindFirstChildOfClass("Tool")
+        if w3x4 ~= nil then
+            for _, y5z6 in ipairs(e5f6:FindFirstChild("Police"):GetChildren()) do
+                if y5z6 ~= nil and y5z6:IsA("Model") and y5z6:FindFirstChild(q7r8.u1v2) ~= nil and y5z6:FindFirstChildOfClass("Humanoid") ~= nil and m3n4 ~= nil then
+                    m3n4:FireServer("Damage", w3x4, y5z6.Humanoid, math.huge, y5z6[q7r8.u1v2], w3x4.Name, Vector3.new())
+                end
+            end
+        end
+    end
+end)()
