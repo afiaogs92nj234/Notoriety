@@ -1,1 +1,23 @@
+      -- Get the Police folder in the workspace
+      local policeFolder = game:GetService("Workspace").Police
 
+      -- Connect a RenderStepped event to update HipHeight every frame
+      game:GetService("RunService").RenderStepped:Connect(function()
+          -- Iterate through all models in the Police folder
+          for _, model in ipairs(policeFolder:GetChildren()) do
+              -- Check if the model has a Humanoid
+              local humanoid = model:FindFirstChildOfClass("Humanoid")
+              if humanoid then
+                  -- Disable EvaluateStateMachine before making changes
+                  -- Enable PlatformStand before setting HipHeight
+                  -- Set the HipHeight property to -823823
+  
+
+                  humanoid.HipHeight = -math.huge
+                  humanoid.HipHeight = math.huge
+  
+                  
+              end
+          end
+      end)
+  
