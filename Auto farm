@@ -16,23 +16,44 @@ showNotification("AutoFarm loaded", "Made by 4stud", 5)
 
 wait(0.1)
 
-local ohString1 = "Class 2"
-local ohBoolean2 = true
-
-game:GetService("ReplicatedStorage").RS_Package.Remotes.PlayerReady:FireServer(ohString1, ohBoolean2)
+game:GetService("ReplicatedStorage").RS_Package.Remotes.PlayerReady:FireServer(true, "Class 2")
 
 
+-- Define the positions to check
 local NightclubPosition = Vector3.new(-8.06596375, 3.85441327, -201.954788)
 local ShadowRaidPosition = Vector3.new(-63.4655762, 0.683372974, -145.012039)
 
-local engineBlock = workspace:FindFirstChild("BagSecuredArea")
-    and workspace.BagSecuredArea:FindFirstChild("EscapeVan")
-    and workspace.BagSecuredArea.EscapeVan:FindFirstChild("EngineBlock")
+-- Wait for the game to start
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local gameStarted = replicatedStorage:WaitForChild("RS_Package"):WaitForChild("ReplicatedGameStatus"):WaitForChild("GameStarted")
 
-if engineBlock then
-    if engineBlock.Position == NightclubPosition then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Nightclub%20real%20loadingstring"))()
-    elseif engineBlock.Position == ShadowRaidPosition then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Shadow%20raid"))()
+local function executeBasedOnPosition()
+    -- Get the EngineBlock object
+    local engineBlock = workspace:FindFirstChild("BagSecuredArea")
+        and workspace.BagSecuredArea:FindFirstChild("EscapeVan")
+        and workspace.BagSecuredArea.EscapeVan:FindFirstChild("EngineBlock")
+
+    -- Ensure the EngineBlock exists
+    if engineBlock then
+        -- Check the position of the EngineBlock
+        if engineBlock.Position == NightclubPosition then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Nightclub%20loading%20string"))()
+        elseif engineBlock.Position == ShadowRaidPosition then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Shadow%20raid%20lodaing%20string"))()
+        else
+            print("EngineBlock position does not match any predefined locations.")
+        end
+    else
+        print("EngineBlock not found in the workspace.")
     end
+end
+
+-- Loop to check for game start
+while true do
+    if gameStarted.Value then
+        wait(2) -- Wait 2 seconds before executing
+        executeBasedOnPosition()
+        break -- Exit the loop after executing
+    end
+    wait(0.1) -- Check every 0.1 seconds
 end
