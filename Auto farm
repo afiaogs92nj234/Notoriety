@@ -1,22 +1,30 @@
--- Define the positions to check
-local position1 = Vector3.new(-8.06596375, 3.85441327, -201.954788)
-local position2 = Vector3.new(-63.4655762, 0.683372974, -145.012039)
 
--- Get the EngineBlock object
+
+
+local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
+local Notify = AkaliNotif.Notify
+
+local function showNotification(description, title, duration)
+    Notify({
+        Description = description,
+        Title = title,
+        Duration = duration
+    })
+end
+
+
+
+local NightclubPosition = Vector3.new(-8.06596375, 3.85441327, -201.954788)
+local ShadowRaidPosition = Vector3.new(-63.4655762, 0.683372974, -145.012039)
+
 local engineBlock = workspace:FindFirstChild("BagSecuredArea")
     and workspace.BagSecuredArea:FindFirstChild("EscapeVan")
     and workspace.BagSecuredArea.EscapeVan:FindFirstChild("EngineBlock")
 
--- Ensure the EngineBlock exists
 if engineBlock then
-    -- Check the position of the EngineBlock
-    if engineBlock.Position == position1 then
+    if engineBlock.Position == NightclubPosition then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Nightclub%20loading%20string"))()
-    elseif engineBlock.Position == position2 then
+    elseif engineBlock.Position == ShadowRaidPosition then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Shadow%20raid"))()
-    else
-        print("EngineBlock position does not match any predefined locations.")
     end
-else
-    print("EngineBlock not found in the workspace.")
 end
