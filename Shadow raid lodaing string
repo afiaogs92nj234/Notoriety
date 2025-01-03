@@ -1,0 +1,49 @@
+wait(1)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pAdsasd3q2/Notoriety/refs/heads/main/kill%20all"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pAdsasd3q2/Notoriety/refs/heads/main/kill%20all"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pAdsasd3q2/Notoriety/refs/heads/main/kill%20all"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pAdsasd3q2/Notoriety/refs/heads/main/kill%20all"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pAdsasd3q2/Notoriety/refs/heads/main/kill%20all"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pAdsasd3q2/Notoriety/refs/heads/main/kill%20all"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pAdsasd3q2/Notoriety/refs/heads/main/kill%20all"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pAdsasd3q2/Notoriety/refs/heads/main/kill%20all"))()
+wait(0.1)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pAdsasd3q2/Notoriety/refs/heads/main/yell"))()
+
+
+local a1b2c3d4 = game:GetService("Players")
+local x9y8z7w6 = a1b2c3d4.LocalPlayer
+
+if x9y8z7w6.Character and x9y8z7w6.Character:FindFirstChild("Humanoid") then
+    local h1u2m3a4 = x9y8z7w6.Character.Humanoid
+    h1u2m3a4.Sit = true
+else
+    warn("Humanoid not found or character not loaded.")
+end
+
+
+
+local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
+local Notify = AkaliNotif.Notify
+
+local function showNotification(description, title, duration)
+    Notify({
+        Description = description,
+        Title = title,
+        Duration = duration
+    })
+end
+
+
+local randomWaitTime = math.random(5, 30)
+
+-- Display notification with the random wait time
+showNotification("Random wait time added for legitness", "" .. randomWaitTime .. " seconds", 5)
+
+-- Wait for the random duration
+task.wait(randomWaitTime)
+
+
+
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/pAdsasd3q2/Notoriety/refs/heads/main/shadow%20raid%202"))()
