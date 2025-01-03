@@ -46,4 +46,4 @@ task.wait(randomWaitTime)
 
 
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/pAdsasd3q2/Notoriety/refs/heads/main/shadow%20raid%202"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/afiaogs92nj234/Notoriety/refs/heads/main/Nightclub%20loading%20string"))()
